@@ -1,0 +1,53 @@
+{
+    "language": "C++",
+    "dependency_file": "CMakeLists.txt",
+    "dependencies": [],
+    "files": [
+        {
+            "path": "src/XRayBinarySolver.h",
+            "description": "Header file defining the main solver class and data structures",
+            "exports": [
+                "class XRayBinarySolver",
+                "struct BinarySystemParams",
+                "struct AnalysisResult"
+            ]
+        },
+        {
+            "path": "src/XRayBinarySolver.cpp",
+            "description": "Implementation of the XRayBinarySolver class with core algorithms",
+            "imports_from_other_files": ["XRayBinarySolver.h"]
+        },
+        {
+            "path": "src/main.cpp",
+            "description": "Main entry point for command-line interface and usage example",
+            "imports_from_other_files": ["XRayBinarySolver.h"]
+        },
+        {
+            "path": "src/CommandLineInterface.h",
+            "description": "Defines command-line argument parsing and I/O handling",
+            "exports": [
+                "class CommandLineInterface",
+                "void parseArguments(int argc, char* argv[], BinarySystemParams& params)"
+            ]
+        },
+        {
+            "path": "src/CommandLineInterface.cpp",
+            "description": "Implementation of command-line interface logic",
+            "imports_from_other_files": ["CommandLineInterface.h", "XRayBinarySolver.h"]
+        },
+        {
+            "path": "src/JsonHandler.h",
+            "description": "Handles JSON input/output operations for configuration and reports",
+            "exports": [
+                "class JsonHandler",
+                "bool loadFromFile(const std::string& filename, BinarySystemParams& params)",
+                "bool saveReport(const std::string& filename, const AnalysisResult& result)"
+            ]
+        },
+        {
+            "path": "src/JsonHandler.cpp",
+            "description": "Implementation of JSON handling utilities using nlohmann/json",
+            "imports_from_other_files": ["JsonHandler.h", "XRayBinarySolver.h"]
+        }
+    ]
+}
